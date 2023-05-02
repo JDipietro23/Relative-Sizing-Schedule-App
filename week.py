@@ -19,15 +19,15 @@ class week():
 
     def removeAssignment(self,dayIndex,assignmentIndex):
         target = self.dayList[dayIndex][assignmentIndex]
-        if type(target==assignment.assignment):
-            for sub in target.children:
-                self.dayList.remove(sub)
+        if type(target==assignment.subAssignment):
+            self.dayList[dayIndex][assignmentIndex].removeSelf()
             del self.dayList[dayIndex][assignmentIndex]
         else:
-            parent = target.parent
-            parent.children.remove(self.dayList[dayIndex][assignmentIndex])
+            for sub in self.dayList[dayIndex][assignmentIndex].children:
+                for day in self.dayList:
+                    if sub in day:
+                        day.remove(sub)
             del self.dayList[dayIndex][assignmentIndex]
-            parent.sync()
 
 
     def viewWeek (self):
@@ -42,7 +42,7 @@ class week():
                 if (j.size != j.dailySize):
                     sizeStr = f"[{j.dailySize} of {j.size}]"
                 else:
-                    sizeStr = f"{j.dailySize}"
+                    sizeStr = f"[{j.dailySize}]"
 
                 subAs = ""
                 if (type(j)==assignment.subAssignment): 

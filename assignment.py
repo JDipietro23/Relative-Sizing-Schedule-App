@@ -132,3 +132,7 @@ class subAssignment(assignment):
         self.dailySize = dailySize
         self.parent.children.append(self)
         parent.sync()
+
+    def removeSelf(self):
+        self.parent.children.remove(self)
+        self.parent.sync()
