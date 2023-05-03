@@ -19,7 +19,7 @@ class week():
 
     def removeAssignment(self,dayIndex,assignmentIndex):
         target = self.dayList[dayIndex][assignmentIndex]
-        if type(target==assignment.subAssignment):
+        if type(target)==assignment.subAssignment:
             self.dayList[dayIndex][assignmentIndex].removeSelf()
             del self.dayList[dayIndex][assignmentIndex]
         else:
