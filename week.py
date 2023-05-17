@@ -13,6 +13,7 @@ class week():
         ]
 
         self.weekNames = ['SUN','MON','TUES','WED','THURS','FRI','SAT']
+        self.threshold = 100
     
     def addAssignment(self, dayIndex, assignment)->None:
         self.dayList[dayIndex].append(assignment)
@@ -36,7 +37,12 @@ class week():
             for j in self.dayList[i]:
                 total+=j.dailySize
 
-            print(f"{self.weekNames[i]} [{total}]")
+            headerStr = f"{self.weekNames[i]} [{total}]"
+
+            if total > self.threshold:
+                headerStr += " !!!"
+            
+            print(headerStr)
 
             for j in self.dayList[i]:
                 if (j.size != j.dailySize):
